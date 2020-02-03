@@ -6,9 +6,17 @@
 /*   By: jipark <jipark@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/02 17:55:26 by jipark            #+#    #+#             */
-/*   Updated: 2020/02/02 19:46:16 by jipark           ###   ########.fr       */
+/*   Updated: 2020/02/02 22:31:07 by jipark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#include "ft_process_input.h"
+#include "ft_main.h"
+
+/*
+**	is_valid_number function will check the validation of input numbers.
+**	The function only considers from 1 to 4 as proper numbers.
+*/
 
 int		is_valid_number(void)
 {
@@ -33,6 +41,11 @@ int		is_valid_number(void)
 	}
 	return (1);
 }
+
+/*
+**	set_restriction_array function is aimed to put elements
+**	into restriction_array according to the user's input string.
+*/
 
 int		set_restriction_array(char *input)
 {
@@ -61,80 +74,49 @@ int		set_restriction_array(char *input)
 	return (1);
 }
 
-int		is_valid_input(char *input)
-{
+/*
+**	init_restriction_array is aimed to dynamically allocate
+**	restriction arrays.
+*/
 
-	if (input[31] != '\0')
-		return (0);
-	input[31] = ' ';
-	if (!set_restriction_array(input))
-		return (0);
-	if (!is_valid_number())
-		return (0);
-	return (1);
+void	init_restriction_array(void)
+{
+	int i;
+
+	i = 0;
+	g_row_restriction = (int **)malloc(sizeof(int *) * 2);
+	g_col_restriction = (int **)malloc(sizeof(int *) * 2);
+	while (i < 2)
+	{
+		g_row_restriction[i] = (int *)malloc(sizeof(int) * g_size);
+		g_col_restriction[i] = (int *)malloc(sizeof(int) * g_size);
+		i++;
+	}
 }
+
+/*
+**	get_map_array function is aimed to dynamically allocate
+**	4 * 4 size two-dimensional array that will display answer.
+*/
 
 int		**get_map_array(void)
 {
 	int **map_arr;
-	int row;
-	int col;
+	int i;
+	int j;
 
-	row = 0;
+	i = 0;
 	map_arr = (int **)malloc(sizeof(int *) * g_size);
-	while (row < 4)
+	while (i < 4)
 	{
-		map_arr[row] = (int *)malloc(sizeof(int) * g_size);
-		col = 0;
-		while (col < 4)
+		map_arr[i] = (int *)malloc(sizeof(int) * g_size);
+		j = 0;
+		while (j < 4)
 		{
-			map_arr[row][col] = 0;
-			col++;
+			map_arr[i][j] = 0;
+			j++;
 		}
-		row++;
+		i++;
 	}
 	return (map_arr);
-}
-
-void	init_restriction_array(void)
-{
-	int cnt;
-
-	cnt = 0;
-	g_row_restriction = (int **)malloc(sizeof(int *) * 2);
-	g_col_restriction = (int **)malloc(sizeof(int *) * 2);
-	while (cnt < 2)
-	{
-		g_row_restriction[cnt] = (int *)malloc(sizeof(int) * g_size);
-		g_col_restriction[cnt] = (int *)malloc(sizeof(int) * g_size);
-		cnt++;
-	}
-}
-
-void	free_map_array(int **map_arr)
-{
-	int i;
-
-	i = 0;
-	while (i < g_size)
-	{
-		free(map_arr[i]);
-		i++;
-	}
-	free(map_arr);
-}
-
-void	free_restriction_array(void)
-{
-	int i;
-
-	i = 0;
-	while (i < 2)
-	{
-		free(g_row_restriction[i]);
-		free(g_col_restriction[i]);
-		i++;
-	}
-	free(g_col_restriction);
-	free(g_row_restriction);
 }
