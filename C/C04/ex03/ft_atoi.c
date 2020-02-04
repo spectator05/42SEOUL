@@ -12,16 +12,19 @@
 
 #include <unistd.h>
 
-void	figure_out_negative(char *str, int *len, int *negative)
+int	figure_out_negative(char *str, int *len, int *negative)
 {
 	while (str[*len] == '-' || str[*len] == '+')
 	{
 		if (str[(*len)++] == '-')
 			*negative *= -1;
 	}
+	if (str[*len] < '0' || str[*len] > '9')
+		return (0);
+	return (1);
 }
 
-int		calc_int(char *str, int *len)
+int	calc_int(char *str, int *len)
 {
 	int rtn_i;
 
@@ -33,7 +36,7 @@ int		calc_int(char *str, int *len)
 	return (rtn_i);
 }
 
-int		ft_atoi(char *str)
+int	ft_atoi(char *str)
 {
 	int len;
 	int negative;
@@ -44,6 +47,9 @@ int		ft_atoi(char *str)
 	{
 		++len;
 	}
-	figure_out_negative(str, &len, &negative);
+	if (str[len] != '-' && str[len] > '+')
+		return (0);
+	if (!figure_out_negative(str, &len, &negative))
+		return (0);
 	return (negative * calc_int(str, &len));
 }
