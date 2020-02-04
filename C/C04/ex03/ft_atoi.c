@@ -6,19 +6,11 @@
 /*   By: wjang <wjang@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/30 13:52:23 by wjang             #+#    #+#             */
-/*   Updated: 2020/01/30 15:24:49 by wjang            ###   ########.fr       */
+/*   Updated: 2020/02/04 16:26:06 by wjang            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <unistd.h>
-
-void	input_charint(char *str, int *i, int *len, int *ilen)
-{
-	while (str[*len] >= '0' && str[*len] <= '9')
-	{
-		i[(*ilen)++] = str[(*len)++];
-	}
-}
 
 void	figure_out_negative(char *str, int *len, int *negative)
 {
@@ -29,15 +21,14 @@ void	figure_out_negative(char *str, int *len, int *negative)
 	}
 }
 
-int		calc_int(int *i, int *ilen, int *negative, int *tens)
+int		calc_int(char *str, int *len)
 {
 	int rtn_i;
 
-	rtn_i = 0;
-	while (*ilen != -1)
+	rtn_i = str[*len] - '0';
+	while (str[++(*len)] >= '0' && str[*len] <= '9')
 	{
-		rtn_i += (*negative) * (*tens) * (i[(*ilen)--] - '0');
-		*tens *= 10;
+		rtn_i = (rtn_i * 10) + (int)str[*len] - '0';
 	}
 	return (rtn_i);
 }
@@ -46,9 +37,6 @@ int		ft_atoi(char *str)
 {
 	int len;
 	int negative;
-	int i[11];
-	int ilen;
-	int tens;
 
 	len = 0;
 	negative = 1;
@@ -57,9 +45,5 @@ int		ft_atoi(char *str)
 		++len;
 	}
 	figure_out_negative(str, &len, &negative);
-	ilen = 0;
-	input_charint(str, i, &len, &ilen);
-	tens = 1;
-	ilen -= 1;
-	return (calc_int(i, &ilen, &negative, &tens));
+	return (negative * calc_int(str, &len));
 }
