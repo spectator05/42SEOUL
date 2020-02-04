@@ -15,6 +15,7 @@
 void ft_putnbr(int nb)
 {
 	char c;
+
 	if (0 <= nb && nb < 10)
 	{
 		c = '0' + nb;
