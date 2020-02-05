@@ -6,30 +6,31 @@
 /*   By: wjang <wjang@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/30 11:17:26 by wjang             #+#    #+#             */
-/*   Updated: 2020/01/30 13:51:27 by wjang            ###   ########.fr       */
+/*   Updated: 2020/02/05 23:43:12 by wjang            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <unistd.h>
 
-void ft_putnbr(int nb)
+void			ft_putnbr(int nb)
 {
-	char c;
+	char		c;
+	long long	i;
 
-	if (0 <= nb && nb < 10)
-	{
-		c = '0' + nb;
-		write(1, &c, 1);
-	}
-	else if (nb < 0)
+	i = (long long)nb;
+	if (i < 0)
 	{
 		write(1, &"-", 1);
-		ft_putnbr(-1 * (nb / 10));
-		ft_putnbr(-1 * (nb % 10));
+		i *= -1;
+	}
+	if (0 <= i && i < 10)
+	{
+		c = i + '0';
+		write(1, &c, 1);
 	}
 	else
 	{
-		ft_putnbr(nb / 10);
-		ft_putnbr(nb % 10);
+		ft_putnbr(i / 10);
+		ft_putnbr(i % 10);
 	}
 }

@@ -6,11 +6,11 @@
 /*   By: wjang <wjang@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/30 13:52:23 by wjang             #+#    #+#             */
-/*   Updated: 2020/02/04 16:26:06 by wjang            ###   ########.fr       */
+/*   Updated: 2020/02/05 23:43:13 by wjang            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <unistd.h>
+#include <stdio.h>
 
 int	figure_out_negative(char *str, int *len, int *negative)
 {
@@ -19,9 +19,9 @@ int	figure_out_negative(char *str, int *len, int *negative)
 		if (str[(*len)++] == '-')
 			*negative *= -1;
 	}
-	if (str[*len] < '0' || str[*len] > '9')
-		return (0);
-	return (1);
+	if (str[*len] >= '0' && str[*len] <= '9')
+		return (1);
+	return (0);
 }
 
 int	calc_int(char *str, int *len)
@@ -30,9 +30,7 @@ int	calc_int(char *str, int *len)
 
 	rtn_i = str[*len] - '0';
 	while (str[++(*len)] >= '0' && str[*len] <= '9')
-	{
 		rtn_i = (rtn_i * 10) + (int)str[*len] - '0';
-	}
 	return (rtn_i);
 }
 
@@ -47,8 +45,6 @@ int	ft_atoi(char *str)
 	{
 		++len;
 	}
-	if (str[len] != '-' && str[len] > '+')
-		return (0);
 	if (!figure_out_negative(str, &len, &negative))
 		return (0);
 	return (negative * calc_int(str, &len));

@@ -6,11 +6,11 @@
 /*   By: wjang <wjang@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/30 10:56:28 by wjang             #+#    #+#             */
-/*   Updated: 2020/01/30 13:49:43 by wjang            ###   ########.fr       */
+/*   Updated: 2020/02/05 18:18:21 by wjang            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int ft_strlen(char *str)
+int	ft_strlen(char *str)
 {
 	int	i;
 

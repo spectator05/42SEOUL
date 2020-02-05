@@ -6,17 +6,17 @@
 /*   By: wjang <wjang@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/30 10:59:30 by wjang             #+#    #+#             */
-/*   Updated: 2020/01/30 11:13:37 by wjang            ###   ########.fr       */
+/*   Updated: 2020/02/05 18:21:10 by wjang            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <unistd.h>
 
-void ft_putstr(char *str)
+void	ft_putstr(char *str)
 {
 	int i;
-	
+
 	i = 0;
-	while(str[i])
+	while (str[i])
 		write(1, &str[i++], 1);
 }
