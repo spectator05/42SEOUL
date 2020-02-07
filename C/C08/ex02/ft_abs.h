@@ -1,41 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_ultimate_range.c                                :+:      :+:    :+:   */
+/*   ft_abs.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: wjang <wjang@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/02/07 11:49:16 by wjang             #+#    #+#             */
-/*   Updated: 2020/02/07 13:27:20 by wjang            ###   ########.fr       */
+/*   Created: 2020/02/07 16:10:29 by wjang             #+#    #+#             */
+/*   Updated: 2020/02/07 22:47:16 by wjang            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
-#include <unistd.h>
+#ifndef FT_ABS_H
+# define FT_ABS_H
 
-int ft_ultimate_range(int **range, int min, int max)
-{
-	unsigned int	i;
-	unsigned int	size;
-	int				*arr;
+# define ABS(X)		(X < 0 ? (-1 * X) : X)
 
-	if (max <= min)
-	{
-		*range = 0;
-		return (0);
-	}
- 	size = max - min;
-	if ((arr = (int *)malloc(sizeof(int) * size)) == NULL)
-	{
-		*range = 0;
-		return (-1);
-	}
-	i = 0;
-	while (i < size)
-	{
-		arr[i] = min + i;
-		i++;
-	}
-	*range = arr;
-	return (size);
-}
+#endif
