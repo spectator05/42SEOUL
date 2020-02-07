@@ -1,22 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_fibonacci.c                                     :+:      :+:    :+:   */
+/*   ft_strdup.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: wjang <wjang@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/02/06 01:23:15 by wjang             #+#    #+#             */
-/*   Updated: 2020/02/06 19:57:11 by wjang            ###   ########.fr       */
+/*   Created: 2020/02/07 03:09:19 by wjang             #+#    #+#             */
+/*   Updated: 2020/02/07 03:27:45 by wjang            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int	ft_fibonacci(int index)
+#include <stdlib.h>
+
+char	*ft_strdup(char *src)
 {
-	if (index == 0)
-		return (0);
-	else if (index == 1)
-		return (1);
-	else if (index < 0)
-		return (-1);
-	return (ft_fibonacci(index - 1) + ft_fibonacci(index - 2));
+	char	*res;
+	int		size;
+
+	size = 0;
+	while(src[size])
+		++size;
+	res = (char *)malloc((sizeof(char) * size + 1));
+	size = 0;
+	while(src[size])
+	{
+		res[size] = src[size];
+		size++;
+	}
+	res[size] = src[size];
+	return (res);
 }

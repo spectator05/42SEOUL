@@ -6,13 +6,11 @@
 /*   By: wjang <wjang@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/22 21:57:44 by wjang             #+#    #+#             */
-/*   Updated: 2020/01/25 19:40:35 by wjang            ###   ########.fr       */
+/*   Updated: 2020/02/06 23:02:41 by wjang            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <unistd.h>
-
-void	ft_print_reverse_alphabet(void);
 
 void	ft_print_reverse_alphabet(void)
 {

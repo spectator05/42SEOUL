@@ -6,13 +6,11 @@
 /*   By: wjang <wjang@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/22 21:57:44 by wjang             #+#    #+#             */
-/*   Updated: 2020/01/26 17:14:13 by wjang            ###   ########.fr       */
+/*   Updated: 2020/02/06 23:02:31 by wjang            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <unistd.h>
-
-void ft_putchar(char c);
 
 void	ft_putchar(char c)
 {

@@ -1,25 +1,12 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: wjang <wjang@student.42.fr>                +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/01/23 18:38:14 by wjang             #+#    #+#             */
-/*   Updated: 2020/01/25 20:28:11 by wjang            ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
+#include <unistd.h>
+#include <stdio.h>
 
-void	ft_putnbr(int nb);
+void ft_putnbr(int nb);
 
-int		main(void)
+int	main(void)
 {
-	ft_putnbr(1);
-	ft_putnbr(0);
-	ft_putnbr(-1);
-	ft_putnbr(123);
-	ft_putnbr(-123);
-	ft_putnbr(-2147483647);
-	ft_putnbr(-124142142);
-	return (0);
+	int i1 = -38572478;
+	ft_putnbr(i1);
+	write(1, &"\n", 1);
+	printf("%d\n", i1);
 }

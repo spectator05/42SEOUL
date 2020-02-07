@@ -6,17 +6,18 @@
 /*   By: wjang <wjang@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/06 05:05:20 by wjang             #+#    #+#             */
-/*   Updated: 2020/02/06 05:19:58 by wjang            ###   ########.fr       */
+/*   Updated: 2020/02/07 02:04:02 by wjang            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <unistd.h>
 
-int main(int argc, char **argv)
+int	main(int argc, char **argv)
 {
 	while (*argv[0])
 	{
 		write(1, argv[0]++, 1);
 	}
 	write(1, &"\n", 1);
+	return (0);
 }

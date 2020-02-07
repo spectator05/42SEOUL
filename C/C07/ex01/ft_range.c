@@ -1,22 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_fibonacci.c                                     :+:      :+:    :+:   */
+/*   ft_range.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: wjang <wjang@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/02/06 01:23:15 by wjang             #+#    #+#             */
-/*   Updated: 2020/02/06 19:57:11 by wjang            ###   ########.fr       */
+/*   Created: 2020/02/07 03:29:08 by wjang             #+#    #+#             */
+/*   Updated: 2020/02/07 12:14:10 by wjang            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int	ft_fibonacci(int index)
+#include <stdlib.h>
+
+int	*ft_range(int min, int max)
 {
-	if (index == 0)
-		return (0);
-	else if (index == 1)
-		return (1);
-	else if (index < 0)
-		return (-1);
-	return (ft_fibonacci(index - 1) + ft_fibonacci(index - 2));
+	int				*arr;
+	unsigned int	i;
+	int				j;
+	unsigned int	size;
+
+	if (max <= min)
+	{
+		arr = 0;
+		return (NULL);
+	}
+	size = max - min;
+	if ((arr = (int *)malloc(sizeof(int) * size)) == NULL)
+		return (NULL);
+	i = 0;
+	while (i < size)
+	{
+		arr[i] = min + i;
+		i++;
+	}
+	return (arr);
 }

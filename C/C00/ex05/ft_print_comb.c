@@ -6,15 +6,11 @@
 /*   By: wjang <wjang@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/23 21:48:01 by wjang             #+#    #+#             */
-/*   Updated: 2020/01/25 17:18:24 by wjang            ###   ########.fr       */
+/*   Updated: 2020/02/06 23:03:07 by wjang            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <unistd.h>
-
-void	ft_put_number(char c1, char c2, char c3);
-void	ft_print_comb(void);
-void	ft_carc_comb(char units, char tens, char thous);
 
 void	ft_put_number(char c1, char c2, char c3)
 {

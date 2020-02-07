@@ -6,13 +6,13 @@
 /*   By: wjang <wjang@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/06 05:23:52 by wjang             #+#    #+#             */
-/*   Updated: 2020/02/06 05:27:19 by wjang            ###   ########.fr       */
+/*   Updated: 2020/02/07 02:04:06 by wjang            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <unistd.h>
 
-int main(int argc, char **argv)
+int	main(int argc, char **argv)
 {
 	int i;
 
@@ -24,4 +24,5 @@ int main(int argc, char **argv)
 		i++;
 		write(1, &"\n", 1);
 	}
+	return (0);
 }

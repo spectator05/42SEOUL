@@ -5,32 +5,33 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: wjang <wjang@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/01/25 19:00:32 by wjang             #+#    #+#             */
-/*   Updated: 2020/01/25 20:44:36 by wjang            ###   ########.fr       */
+/*   Created: 2020/02/06 23:06:26 by wjang             #+#    #+#             */
+/*   Updated: 2020/02/06 23:09:26 by wjang            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <unistd.h>
 
-void	ft_putchar(char c)
+void		ft_putnbr(int nb)
 {
-	write(1, &c, 1);
-}
+	char		c;
+	long long	i;
 
-void	ft_putnbr(int num)
-{
-	if (num < 10 && num >= 0)
+	i = (long long)nb;
+	if (i < 0)
 	{
-		ft_putchar(num + 48);
+		write(1, &"-", 1);
+		i *= -1;
 	}
-	else if (num >= 10)
+	if(0 <= i && i < 10)
 	{
-		ft_putnbr(num / 10);
-		ft_putchar(num % 10 + 48);
+		c = i + '0';
+		write(1, &c, 1);
 	}
 	else
 	{
-		ft_putchar('-');
-		ft_putnbr(num * -1);
+		ft_putnbr(i / 10);
+		ft_putnbr(i % 10);
 	}
+
 }
