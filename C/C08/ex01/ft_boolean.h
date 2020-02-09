@@ -6,7 +6,7 @@
 /*   By: wjang <wjang@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/07 16:10:26 by wjang             #+#    #+#             */
-/*   Updated: 2020/02/07 22:46:36 by wjang            ###   ########.fr       */
+/*   Updated: 2020/02/09 03:00:52 by wjang            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,12 +21,12 @@ typedef	int	t_bool;
 # define FALSE		0
 # define SUCCESS	0
 
-# define EVEN(X)	(X % 2 == 0) ? TRUE : FALSE)
+# define EVEN(X)	(X % 2 == 0)
 
 # define EVEN_MSG	"I have an even number of arguments.\n"
 # define ODD_MSG	"I have an odd number of arguments.\n"
 
 void		ft_putstr(char *str);
-t_bool		ft_is_even(t_bool nbr);
+t_bool		ft_is_even(int nbr);
 
 #endif

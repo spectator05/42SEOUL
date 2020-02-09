@@ -1,19 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putstr.c                                        :+:      :+:    :+:   */
+/*   ft_stock_str.h                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: wjang <wjang@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/01/26 18:09:03 by wjang             #+#    #+#             */
-/*   Updated: 2020/02/09 00:54:57 by wjang            ###   ########.fr       */
+/*   Created: 2020/02/09 03:18:10 by wjang             #+#    #+#             */
+/*   Updated: 2020/02/09 03:44:20 by wjang            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <unistd.h>
+#ifndef FT_STOCK_STR_H
+# define FT_STOCK_STR_H
 
-void	ft_putstr(char *str)
+typedef struct	s_stock_str
 {
-	while (*str != '\0')
-		write(1, &*str++, 1);
-}
+	int		size;
+	char	*str;
+	char	*copy;
+}				t_stock_str;
+
+#endif
