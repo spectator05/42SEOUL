@@ -6,77 +6,71 @@
 /*   By: wjang <wjang@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/07 13:27:51 by wjang             #+#    #+#             */
-/*   Updated: 2020/02/07 15:33:38 by wjang            ###   ########.fr       */
+/*   Updated: 2020/02/11 04:16:22 by wjang            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
-#include <string.h>
-#include <unistd.h>
 
-unsigned int	all_char(int size, char **strs, char *sep)
+int				ft_strlen(char *str)
 {
-	int				i;
-	int				j;
-	unsigned int	cnt;
+	int idx;
 
-	i = 0;
-	cnt = 0;
-	while (i < size)
-	{
-		j = 0;
-		while (strs[i][j])
-			j++;
-		if (j != 0)
-			cnt += j;
-		i++;
-	}
-	return (cnt);
+	idx = 0;
+	while (str[idx])
+		idx++;
+	return (idx);
 }
 
-void			put_str(char *str, char *strs, int *i)
+int				alloc_size(int size, char **strs, char *sep)
 {
-	int j;
+	int i;
+	int len;
 
-	j = 0;
-	write(1, "7", 1);
-	while (str[j] != '\0')
+	len = 0;
+	i = 0;
+	len += ft_strlen(sep) * (size - 1);
+	while (i < size)
+		len += ft_strlen(strs[i++]);
+	return (len);
+}
+
+void			init_str(char **strs, char *str, char *sep)
+{
+	int		i;
+	int		j;
+	int		str_i;
+
+	i = 0;
+	str_i = 0;
+	while (strs[i])
 	{
-		str[*i++] = strs[j++];
+		if (i != 0)
+		{
+			j = 0;
+			while (sep[j])
+				str[str_i++] = sep[j++];
+		}
+		j = 0;
+		while (strs[i][j])
+			str[str_i++] = strs[i][j++];
+		i++;
 	}
+	str[str_i] = '\0';
 }
 
 char			*ft_strjoin(int size, char **strs, char *sep)
 {
-	unsigned int	strs_cnt;
-	unsigned int	sep_len;
-	char			*str;
-	int				i;
-	int				j;
+	char	*str;
 
+	str = 0;
 	if (size == 0)
 	{
-		return ("\0");
+		str = (char *)malloc(sizeof(char));
+		str[0] = 0;
+		return (str);
 	}
-	write(1, "1", 1);
-	strs_cnt = all_char(size, strs, sep);
-	write(1, "2", 1);
-	sep_len = 0;
-	while (sep[sep_len])
-		sep_len++;
-	write(1, "3", 1);
-	str = (char *)malloc(sizeof(char) * (strs_cnt + sep_len * (size - 1) + 1));
-	write(1, "4", 1);
-	j = 0;
-	while (j < size)
-	{
-		write(1, "5", 1);
-		put_str(str, strs[j], &i);
-		put_str(str, sep, &i);
-		j++;
-	}
-	put_str(str, strs[j], &i);
-	str[i] = '\0';
-	write(1, "6", 1);
+	str = ((char *)malloc(sizeof(char) * (alloc_size(size, strs, sep) + 1)));
+	init_str(strs, str, sep);
 	return (str);
 }

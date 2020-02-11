@@ -6,7 +6,7 @@
 /*   By: wjang <wjang@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/07 03:29:08 by wjang             #+#    #+#             */
-/*   Updated: 2020/02/07 12:14:10 by wjang            ###   ########.fr       */
+/*   Updated: 2020/02/11 04:03:04 by wjang            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@ int	*ft_range(int min, int max)
 {
 	int				*arr;
 	unsigned int	i;
-	int				j;
 	unsigned int	size;
 
 	if (max <= min)

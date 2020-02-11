@@ -24,7 +24,7 @@ int main(void)
 	int max;
 	int *arr;
 
-	min = -2147483648; max = 2147483647;
+	min = -10000; max = -1000;
 	arr = ft_range(min, max);
 	print_arr(arr, min, max);
 }
