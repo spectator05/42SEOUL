@@ -6,12 +6,13 @@
 /*   By: wjang <wjang@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/07 13:27:51 by wjang             #+#    #+#             */
-/*   Updated: 2020/02/11 04:16:22 by wjang            ###   ########.fr       */
+/*   Updated: 2020/02/12 18:11:58 by wjang            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
-
+#include <stdio.h>
+#include <unistd.h>
 int				ft_strlen(char *str)
 {
 	int idx;
@@ -32,7 +33,7 @@ int				alloc_size(int size, char **strs, char *sep)
 	len += ft_strlen(sep) * (size - 1);
 	while (i < size)
 		len += ft_strlen(strs[i++]);
-	return (len);
+	return (len + 1);
 }
 
 void			init_str(char **strs, char *str, char *sep)
@@ -62,15 +63,17 @@ void			init_str(char **strs, char *str, char *sep)
 char			*ft_strjoin(int size, char **strs, char *sep)
 {
 	char	*str;
+	int		arr_size;
 
-	str = 0;
-	if (size == 0)
+	if (size <= 0)
 	{
 		str = (char *)malloc(sizeof(char));
 		str[0] = 0;
 		return (str);
 	}
-	str = ((char *)malloc(sizeof(char) * (alloc_size(size, strs, sep) + 1)));
-	init_str(strs, str, sep);
+	arr_size = alloc_size(size, strs, sep);
+	str = ((char *)malloc(sizeof(char) * arr_size));
+	if (strs[0][0] != '\0' && size != 0)
+		init_str(strs, str, sep);
 	return (str);
 }

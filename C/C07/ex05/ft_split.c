@@ -5,13 +5,17 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: wjang <wjang@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/02/11 21:40:36 by wjang             #+#    #+#             */
-/*   Updated: 2020/02/13 21:01:18 by wjang            ###   ########.fr       */
+/*   Created: 2020/02/13 16:56:50 by wjang             #+#    #+#             */
+/*   Updated: 2020/02/13 20:14:23 by wjang            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
 #include <stdio.h>
+#include <stdlib.h>
+#include <unistd.h>
+
+int	g_str_size;
+int g_arr_i;
 
 int		count_arr(char *str, char *charset)
 {
@@ -38,10 +42,10 @@ int		count_arr(char *str, char *charset)
 		}
 		i++;
 	}
-	return (cnt + 1);
+	return (cnt);
 }
 
-int		is_char(char *str, char *charset, int i)
+char	is_charset(char *str, char *charset, int i)
 {
 	int j;
 
@@ -54,56 +58,69 @@ int		is_char(char *str, char *charset, int i)
 	return (0);
 }
 
-int		findout_wordlen(char *str, char *charset, int i)
+void	find_word_end(char *str, char *charset, int *j)
 {
-	int j;
+	while (!(is_charset(str, charset, *j)) && str[*j])
+	{
+		(*j)++;
+	}
+}
 
-	j = 0;
-	i++;
-	while (!is_char(str, charset, i) && !str[i])
-		i++;
-	return (i - j);
+void	init_arr(char **arr, int *i, char *str, char *charset)
+{
+	int	idx;
+	int	k;
+	int j;
+	int	size;
+
+	find_word_end(str, charset, &j);
+	size = j - *i;
+	if (is_charset(str, charset, j))
+		size++;
+	if (is_charset(str, charset, *i))
+		size++;
+	arr[g_arr_i] = (char *)malloc(sizeof(char) * (size + 1));
+	k = 0;
+	if (is_charset(str, charset, *i))
+		arr[g_arr_i][k++] = str[(*i)++];
+	while (*i < j)
+		arr[g_arr_i][k++] = str[(*i)++];
+	if (is_charset(str, charset, j))
+		arr[g_arr_i][k] = str[*i];
 }
 
 char	**ft_split(char *str, char *charset)
 {
 	char	**arr;
 	int		arr_size;
-	int		*arr_cnt;
 	int		i;
-	int		j;
+	int		k;
+	int		*cnt_arr;
 
+	g_str_size = 0;
+	while (str[g_str_size])
+		g_str_size++;
 	arr_size = count_arr(str, charset);
 	arr = (char **)malloc(sizeof(char *) * (arr_size + 1));
-	arr_cnt = (int *)malloc(sizeof(int) * (arr_size));
+	cnt_arr = (int *)malloc(sizeof(int) * (arr_size + 1));
 	i = 0;
-	j = 0;
-	while (i < arr_size)
-	{
-		if (is_char(str, charset, j) || j == 0)
-		{
-			if (j == 0 || is_char(str, charset, j - 1))
-			{
-				arr_cnt[i] = findout_wordlen(str, charset, j);
-				j += arr_cnt[i];
-			}
-			else
-				j++;
-		}
-		i++;
-	}
+	while(i < arr_size)
+		cnt_arr[i] = 0;
 	i = 0;
-	printf("arrsize : %d\n", arr_size);
-	while (i < arr_size)
+	g_arr_i = 0;
+	printf("g_str_size : %d", g_str_size);
+	while (i < g_str_size)
 	{
-		printf("arr[%d] count : %d\n", i, arr_cnt[i]);
-		i++;
+		init_arr(arr, &i, str, charset);
+		g_arr_i++;
 	}
-
+	return (arr);
 }
 
 int main(int argc, char **argv)
 {
-	char **arr;
+	char	**arr;
+	int		i;
+
 	arr = ft_split(argv[1], argv[argc - 1]);
 }
