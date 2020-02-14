@@ -6,14 +6,12 @@
 /*   By: wjang <wjang@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/09 03:17:31 by wjang             #+#    #+#             */
-/*   Updated: 2020/02/09 03:45:43 by wjang            ###   ########.fr       */
+/*   Updated: 2020/02/09 11:47:41 by wjang            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
 #include "ft_stock_str.h"
-
-struct s_stock_str	*ft_strs_to_tab(int argc, char **argv);
 
 char				*ft_strdup(char *src)
 {
